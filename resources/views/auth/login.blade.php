@@ -24,15 +24,14 @@
                                 <a href="#" class="text-nowrap logo-img text-center d-block py-3 w-100">
                                     <img src="{{ asset('assets/images/logos/dark-logo.svg') }}" width="180" alt="">
                                 </a>
-                                <p class="text-center">Your Social Campaigns</p>
                                 <form>
                                     <div class="mb-3">
                                         <label for="email" class="form-label">Username</label>
-                                        <input type="email" class="form-control" id="email" name="email">
+                                        <input type="email" class="form-control" id="email" name="email" autocomplete="off">
                                     </div>
                                     <div class="mb-4">
                                         <label for="password" class="form-label">Password</label>
-                                        <input type="password" class="form-control" id="password" name="password">
+                                        <input type="password" class="form-control" id="password" name="password"  autocomplete="off">
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between mb-4">
                                         <a class="text-primary fw-bold" href="#">Lupa password ?</a>

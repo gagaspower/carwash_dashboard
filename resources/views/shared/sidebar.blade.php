@@ -67,7 +67,7 @@
                     <span class="hide-menu">Pemasukan & Pengeluaran</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link sidebar-link warning-hover-bg" href="./authentication-login.html"
+                    <a class="sidebar-link sidebar-link warning-hover-bg" href="#"
                         aria-expanded="false">
                         <span class="aside-icon p-2 bg-light-warning rounded-3">
                             <i class="ti ti-arrow-narrow-down fs-7 text-warning"></i>
@@ -76,7 +76,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link sidebar-link warning-hover-bg" href="./authentication-register.html"
+                    <a class="sidebar-link sidebar-link warning-hover-bg" href="#"
                         aria-expanded="false">
                         <span class="aside-icon p-2 bg-light-warning rounded-3">
                             <i class="ti ti-arrow-narrow-up fs-7 text-warning"></i>
