@@ -18,13 +18,19 @@
             class="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
             <div class="d-flex align-items-center justify-content-center w-100">
                 <div class="row justify-content-center w-100">
-                    <div class="col-md-8 col-lg-6 col-xxl-3">
+                    <div class="col-md-10 col-lg-8 col-xxl-3">
                         <div class="card mb-0">
                             <div class="card-body">
-                                <a href="#" class="text-nowrap logo-img text-center d-block py-3 w-100">
-                                    <img src="{{ asset('assets/images/logos/dark-logo.svg') }}" width="180" alt="">
-                                </a>
+                                <h3 class="mb-6 fs-6 fw-bolder">Welcome to Zee CarwashPOS</h3>
+                                <p class="text-dark fs-4 mb-7">Create your account</p>
+                                <hr />
+                                <br />
                                 <form>
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">Nama</label>
+                                        <input type="text" class="form-control" id="name" name="name"
+                                            autocomplete="off">
+                                    </div>
                                     <div class="mb-3">
                                         <label for="email" class="form-label">Email</label>
                                         <input type="email" class="form-control" id="email" name="email"
@@ -42,16 +48,12 @@
                                         </label>
                                     </div>
                                     <br />
-                                    <div class="d-flex align-items-center justify-content-between mb-4">
-                                        <a class="text-primary fw-bold" href="#">Lupa password ?</a>
-                                    </div>
                                     <button type="button" class="btn btn-primary w-100 fs-4 mb-4 rounded-2"
-                                        id="auth_login">Sign
-                                        In</button>
+                                        id="auth_register">Daftar
+                                    </button>
                                     <div class="d-flex align-items-center justify-content-center">
-                                        <p class="fs-4 mb-0 fw-bold">Tidak punya akun?</p>
-                                        <a class="text-primary fw-bold ms-2"
-                                            href="{{ url('/auth/register') }}">Daftar</a>
+                                        <p class="fs-4 mb-0 fw-bold">Sudah punya akun?</p>
+                                        <a class="text-primary fw-bold ms-2" href="{{ url('/') }}">Login</a>
                                     </div>
                                 </form>
                             </div>
@@ -77,10 +79,20 @@
         }
         });
 
-        $('#auth_login').click(function(){
+        $('#auth_register').click(function(){
 
             var email = $('#email').val();
             var password = $('#password').val();
+            var name = $('#name').val();
+
+            if(name === null || name === ''){
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Nama wajib diisi",
+                });
+                return "";
+            }
 
             if(email === null || email === ''){
                 Swal.fire({
@@ -117,19 +129,37 @@
                 });
                 return "";
             }
+            if(password && password.length < 6){
+                Swal.fire({
+                    icon: "error" ,
+                    title: "Oops..." ,
+                    text: "Password Terlalu pendek, setidaknya 6 karakter"
+                });
+                return "" ;
+            }
 
+            if(password && password.length> 8){
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Password Terlalu panjang, maksimal 8 karakter",
+                });
+                return "";
+            }
             $.ajax({
                 type: "POST",
-                url: "{{url('/auth/login-proses')}}",
+                url: "{{url('/auth/register/store')}}",
                 dataType: "json",
                 data: {
                     _token: "{{ csrf_token() }}",
                     email: email,
-                    password : password
+                    password : password,
+                    name : name,
+                    roles: 'Admin'
                 },
                 beforeSend : function() {
                     Swal.fire({
-                    title:'Otensikasi',
+                    title:'Mengirim permintaan',
                     text: 'Mohon Tunggu...',
                     allowOutsideClick: false,
                         didOpen: function() {
@@ -138,10 +168,12 @@
                     })
                 },
                 success: function (data) {
-                    if(data.status !== false){
-                        const urlDestination = "{{ url('/customer') }}";
-                        window.location.replace(urlDestination);
-                    }
+                   Swal.fire({
+                        icon: "success",
+                        title: "Berhasil",
+                        text: "Pendaftaran akun berhasil, silahkan login",
+                    });
+                    clearForm();
                 },
                 error: function(data){
                   var result = JSON.parse(data.responseText);
@@ -152,10 +184,14 @@
                     });
                 }
             });
-
         });
 
 
+    function clearForm(){
+        var email = $('#email').val('');
+        var password = $('#password').val('');
+        var name = $('#name').val('');
+    }
     </script>
 </body>
 

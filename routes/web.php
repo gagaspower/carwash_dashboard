@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 Route::controller(AuthController::class)->group(function () {
     Route::get('/', 'index')->name('login');
     Route::post('/auth/login-proses', '_create_session');
+    Route::get('/auth/register', '_register');
+    Route::post('/auth/register/store', 'store_register');
 });
 Route::middleware(['auth'])->group(function () {
     Route::controller(CustomerController::class)->group(function () {
