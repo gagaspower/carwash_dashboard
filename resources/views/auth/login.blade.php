@@ -27,12 +27,21 @@
                                 <form>
                                     <div class="mb-3">
                                         <label for="email" class="form-label">Username</label>
-                                        <input type="email" class="form-control" id="email" name="email" autocomplete="off">
+                                        <input type="email" class="form-control" id="email" name="email"
+                                            autocomplete="off">
                                     </div>
                                     <div class="mb-4">
                                         <label for="password" class="form-label">Password</label>
-                                        <input type="password" class="form-control" id="password" name="password"  autocomplete="off">
+                                        <input type="password" class="form-control" id="password" name="password"
+                                            autocomplete="off">
                                     </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="showPassword">
+                                        <label class="form-check-label" for="showPassword">
+                                            Tampilkan Password
+                                        </label>
+                                    </div>
+                                    <br />
                                     <div class="d-flex align-items-center justify-content-between mb-4">
                                         <a class="text-primary fw-bold" href="#">Lupa password ?</a>
                                     </div>
@@ -58,6 +67,15 @@
     <script>
         let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         let alphaNumOnly = /^[a-zA-Z0-9]*$/;
+
+        $('#showPassword').on('change', function () {
+        const passwordInput = $('#password');
+        if ($(this).is(':checked')) {
+            passwordInput.attr('type', 'text');
+        } else {
+            passwordInput.attr('type', 'password');
+        }
+        });
 
         $('#auth_login').click(function(){
 
