@@ -57,7 +57,7 @@
     <script src="{{asset('assets/js/sweetalert/sweetalert2.all.min.js')}}"></script>
     <script>
         let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        let alphaNumOnly = '/[^a-zA-Z0-9]/g';
+        let alphaNumOnly = /^[a-zA-Z0-9]*$/;
 
         $('#auth_login').click(function(){
 
@@ -91,7 +91,7 @@
                 return "";
             }
 
-            if(password && alphaNumOnly.match(password) === false){
+            if(password && alphaNumOnly.test(password) === false){
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",

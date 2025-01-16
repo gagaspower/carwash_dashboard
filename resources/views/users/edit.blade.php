@@ -46,7 +46,7 @@
 @section('script')
 <script>
     let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    let alphaNumOnly = '/[^a-zA-Z0-9]/g';
+    let alphaNumOnly = /^[a-zA-Z0-9]*$/;
     let userId = "{{$current->id}}";
     $('#showPassword').on('change', function () {
         const passwordInput = $('#password');
@@ -98,7 +98,7 @@
             return "";
         }
 
-        if(password && alphaNumOnly.match(password) === false){
+        if(password && alphaNumOnly.test(password) === false){
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
