@@ -153,7 +153,7 @@ class UserController extends Controller
             'id'    => $result->id,
             'name'  => $result->name,
             'email' => $result->email,
-            'role'  => $result->model_has_role->role->name
+            'role'  => $result->model_has_role->role->name ?? ''
         ]);
 
         return response()->json([

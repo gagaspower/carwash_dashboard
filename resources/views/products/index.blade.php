@@ -5,16 +5,19 @@
         <div class="card w-100">
             <div class="card-body p-4">
                 <div class="d-flex mb-4 justify-content-between align-items-center">
-                    <h5 class="mb-0 fw-bold">Pelanggan</h5>
-                    <a href="{{url('/customer/add')}}" class="btn btn-info m-1">Tambah Data</a>
+                    <h5 class="mb-0 fw-bold">Produk</h5>
+
+                    <a href="{{url('/product/add')}}" class="btn btn-info btn-flat m-1"> Tambah Data</a>
                 </div>
-                <table id="customerTable" data-toggle="table" data-url="/customer/fetch-customer" data-pagination="true"
+
+                <table id="vehicleTable" data-toggle="table" data-url="/product/fetch-data" data-pagination="true"
                     data-side-pagination="server" data-search="true" data-sort-name="id" data-sort-order="asc"
                     class="table">
                     <thead>
                         <tr>
-                            <th data-field="customer_name" data-sortable="true">Nama Pelanggan</th>
-                             <th data-field="customer_phone" data-sortable="false">No. Tlp/HP</th>
+                            <th data-field="product_name" data-sortable="true">Nama</th>
+                            <th data-field="product_price" data-sortable="false">Harga</th>
+
                             <th data-field="operate" data-formatter="operateFormatter" data-events="operateEvents">Aksi
                             </th>
                         </tr>
@@ -63,14 +66,14 @@
 
 
     function toToEdit(row){
-          window.location.href = "{{ url('/customer/edit/') }}" + "/" + row.id;
+          window.location.href = "{{ url('/product/edit/') }}" + "/" + row.id;
     }
 
 
     function deleteData(row){
         $.ajax({
             type: "DELETE",
-            url: "{{url('/customer/delete')}}/" + row.id,
+            url: "{{url('/product/delete')}}/" + row.id,
             data: {
                 _token: "{{ csrf_token() }}",
             },
@@ -87,10 +90,10 @@
             success: function (data) {
                 Swal.fire({
                     title: "Sukses!",
-                    text: "Data pelanggan berhasil dihapus.",
+                    text: "Data berhasil dihapus.",
                     icon: "success"
                 });
-                 $('#customerTable').bootstrapTable('refresh');
+                 $('#vehicleTable').bootstrapTable('refresh');
             },
             error: function(data){
                 Swal.fire({

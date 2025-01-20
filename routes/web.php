@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VehicleBrandController;
@@ -53,6 +54,16 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/user/edit/{id}', 'edit');
         Route::put('/user/update/{id}', 'update');
         Route::delete('/user/delete/{id}', 'destroy');
+    });
+
+    Route::controller(ProductController::class)->group(function () {
+        Route::get('/product', 'index');
+        Route::get('/product/fetch-data', '_fetch_data');
+        Route::get('/product/add', 'create');
+        Route::post('/product/add/store', 'store');
+        Route::get('/product/edit/{id}', 'edit');
+        Route::put('/product/update/{id}', 'update');
+        Route::delete('/product/delete/{id}', 'destroy');
     });
 
     Route::controller(AuthController::class)->group(function () {

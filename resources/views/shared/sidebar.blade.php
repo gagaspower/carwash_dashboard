@@ -38,12 +38,21 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link sidebar-link danger-hover-bg" href="{{ url('/merk-kendaraan') }}"
+                    <a class="sidebar-link sidebar-link success-hover-bg" href="{{ url('/merk-kendaraan') }}"
                         aria-expanded="false">
-                        <span class="aside-icon p-2 bg-light-danger rounded-3">
-                            <i class="ti ti-car fs-7 text-danger"></i>
+                        <span class="aside-icon p-2 bg-light-success rounded-3">
+                            <i class="ti ti-car fs-7 text-success"></i>
                         </span>
                         <span class="hide-menu ms-2 ps-1">Merk Kendaraan</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link sidebar-link danger-hover-bg" href="{{ url('/product') }}"
+                        aria-expanded="false">
+                        <span class="aside-icon p-2 bg-light-danger rounded-3">
+                            <i class="ti ti-devices-star fs-7 text-danger"></i>
+                        </span>
+                        <span class="hide-menu ms-2 ps-1">Produk</span>
                     </a>
                 </li>
                 <li class="sidebar-item">

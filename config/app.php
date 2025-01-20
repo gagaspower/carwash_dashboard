@@ -59,7 +59,7 @@ return [
      * | is set to "UTC" by default as it is suitable for most use cases.
      * |
      */
-    'timezone' => env('Asia/Jakarta', 'UTC'),
+    'timezone' => env('APP_TIMEZONE', 'UTC'),
 
     /*
      * |--------------------------------------------------------------------------
