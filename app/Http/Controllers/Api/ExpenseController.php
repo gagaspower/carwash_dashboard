@@ -57,7 +57,7 @@ class ExpenseController extends Controller
         DB::beginTransaction();
         try {
             $expense = Expense::create([
-                'tanggal_pencatatan'  => $request->tanggal_pencatatan,
+                'tanggal_pencatatan'  => Carbon::parse($request->tanggal_pencatatan)->format('Y-m-d'),
                 'jenis_pengeluaran'   => $request->jenis_pengeluaran,
                 'jumlah_pengeluaran'  => $request->jumlah_pengeluaran,
                 'catatan_pengeluaran' => isset($request->catatan_pengeluaran) ? $request->catatan_pengeluaran : '',

@@ -52,4 +52,17 @@ class AuthController extends Controller
             'message' => 'Logout success'
         ], 200);
     }
+
+    public function currentAuth(Request $request)
+    {
+        $user = $request->user();
+
+        $data = [
+            'id'   => $user->id,
+            'name' => $user->name,
+            'role' => $user->roles->first()->name
+        ];
+
+        return response()->json($data);
+    }
 }
