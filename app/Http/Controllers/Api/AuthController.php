@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AuthRequest;
+use App\Http\Requests\ChangePasswordRequest;
 use App\Models\User;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -64,5 +66,23 @@ class AuthController extends Controller
         ];
 
         return response()->json($data);
+    }
+
+    public function changePwd(ChangePasswordRequest $request)
+    {
+        DB::beginTransaction();
+        try {
+            User::where('id', Auth::user()->id)->update([
+                'password' => Hash::make($request->password)
+            ]);
+
+            DB::commit();
+
+            return $this->successResponse(null);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            return $this->errorResponse($th->getMessage());
+        }
     }
 }

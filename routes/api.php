@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ExpenseController;
+use App\Http\Controllers\Api\PegawaiController;
 use App\Http\Controllers\Api\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -31,5 +32,11 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         Route::delete('/product/delete/{id}', 'destroy');
     });
 
+    Route::controller(PegawaiController::class)->group(function () {
+        Route::get('/pegawai', 'index');
+        Route::post('/pegawai/add', 'store');
+    });
+
     Route::get('/auth/current-auth', [AuthController::class, 'currentAuth']);
+    Route::post('/auth/change-password', [AuthController::class, 'changePwd']);
 });
