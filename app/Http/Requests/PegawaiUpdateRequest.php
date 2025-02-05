@@ -7,7 +7,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class PegawaiCreateRequest extends FormRequest
+class PegawaiUpdateRequest extends FormRequest
 {
     use ApiResponse;
 
@@ -29,7 +29,7 @@ class PegawaiCreateRequest extends FormRequest
         return [
             'name'     => 'required|max:255',
             'email'    => 'required|email|max:255',
-            'password' => 'required|min:6|max:8|alpha_num'
+            'password' => 'nullable|min:6|max:8|alpha_num'
         ];
     }
 
@@ -38,7 +38,7 @@ class PegawaiCreateRequest extends FormRequest
         return [
             'name.required'      => 'Anda belum mengisi nama',
             'email.required'     => 'Anda belum mengisi email',
-            'password.required'  => 'Anda belum mengisi password',
+            // 'password.required'  => 'Anda belum mengisi password',
             'email.email'        => 'Mohon isikan email yang benar',
             // 'email.unique'       => 'Email sudah terdaftar',
             'password.min'       => 'Password minimal :min karakter',

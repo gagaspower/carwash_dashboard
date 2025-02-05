@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ExpenseController;
 use App\Http\Controllers\Api\PegawaiController;
 use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -35,8 +36,13 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::controller(PegawaiController::class)->group(function () {
         Route::get('/pegawai', 'index');
         Route::post('/pegawai/add', 'store');
+        Route::get('/pegawai/edit/{id}', 'show');
+        Route::put('/pegawai/update/{id}', 'update');
+        Route::delete('/pegawai/delete/{id}', 'destroy');
     });
 
     Route::get('/auth/current-auth', [AuthController::class, 'currentAuth']);
     Route::post('/auth/change-password', [AuthController::class, 'changePwd']);
+
+    Route::get('/user/all', [UserController::class, 'index']);
 });
