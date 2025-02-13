@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\Api\ExpenseController;
 use App\Http\Controllers\Api\PegawaiController;
 use App\Http\Controllers\Api\ProductController;
@@ -45,4 +46,12 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/auth/change-password', [AuthController::class, 'changePwd']);
 
     Route::get('/user/all', [UserController::class, 'index']);
+
+    Route::controller(CustomerController::class)->group(function () {
+        Route::get('/pelanggan', 'index');
+        Route::post('/pelanggan/add', 'store');
+        Route::get('/pelanggan/detail/{id}', 'show');
+        Route::put('/pelanggan/update/{id}', 'update');
+        Route::delete('/pelanggan/delete/{id}', 'destroy');
+    });
 });
